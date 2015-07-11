@@ -1,4 +1,4 @@
-package edu.uoregon.bbird.rockpaperscissors;
+package edu.uoregon.bbird.rps;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
