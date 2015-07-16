@@ -43,37 +43,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    public void computerMove(RpsGame game) {
-        Activity activity = getActivity();   // Get a reference to the host activity
 
-        // Computer chooses a hand, we display the computer's choice
-        rpsImageView = (ImageView)activity.findViewById(R.id.rpsImage);
-        compMoveTextView = (TextView)activity.findViewById(R.id.compMoveTextView);
-        displayImage(game.computerMove());   // Computer makes a move and we display it
 
-        // Display the winner
-        TextView winnerTextView = (TextView)activity.findViewById(R.id.winnerTextView);
-        winnerTextView.setText(game.whoWon().toString());
-    }
 
-    // Display an image and text to match the value in hand
-    private void displayImage(Hand hand) {
-        int id = 0;
-
-        switch(hand)
-        {
-            case rock:
-                id = R.drawable.rock;
-                break;
-            case paper:
-                id = R.drawable.paper;
-                break;
-            case scissors:
-                id = R.drawable.scissors;
-                break;
-        }
-        rpsImageView.setImageResource(id);
-        compMoveTextView.setText(hand.toString());
-
-    }
 }

@@ -22,13 +22,12 @@ public class FirstFragment extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-         View view = inflater.inflate(R.layout.first_fragment, container, false);
+        // Make Java objects from the fragment's XML elements
+        View view = inflater.inflate(R.layout.first_fragment, container, false);
 
         // Set this fragment to listen for the Play button's click event
         Button b = (Button) view.findViewById(R.id.playButton);
         b.setOnClickListener(this);
-
-        rpsEditText = (EditText)view.findViewById(R.id.rpsEditText);
 
         return view;
     }
@@ -36,17 +35,8 @@ public class FirstFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.playButton) {
-            String hand = rpsEditText.getText().toString().toLowerCase();
-            // convert string to Hand enum
-            if (hand.equals("")) {
-                hand = "none";
-            }
-            Hand humanHand = Hand.valueOf(hand);
-
-            // send an intent containing the human's Hand choice
+            // send an intent to start or resume the 2nd Activity
             Intent intent = new Intent(getActivity(), SecondActivity.class);
-            int humanHandNum = humanHand.ordinal();
-            intent.putExtra("humanHand", humanHandNum);  // send state to 2nd activity
             startActivity(intent);
         }
     }
