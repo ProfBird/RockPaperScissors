@@ -37,6 +37,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.newGameButton:
+                // Take us back to the first screen
                 startActivity(new Intent(getActivity(), FirstActivity.class));
                 break;
         }
@@ -45,7 +46,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
     public void computerMove(RpsGame game) {
         Activity activity = getActivity();   // Get a reference to the host activity
 
-        // Display the computer's move
+        // Computer chooses a hand, we display the computer's choice
         rpsImageView = (ImageView)activity.findViewById(R.id.rpsImage);
         compMoveTextView = (TextView)activity.findViewById(R.id.compMoveTextView);
         displayImage(game.computerMove());   // Computer makes a move and we display it
@@ -55,7 +56,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         winnerTextView.setText(game.whoWon().toString());
     }
 
-
+    // Display an image and text to match the value in hand
     private void displayImage(Hand hand) {
         int id = 0;
 

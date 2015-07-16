@@ -16,12 +16,11 @@ import android.widget.EditText;
 
 public class FirstFragment extends Fragment implements OnClickListener {
 
-    private RpsGame game;
-    private boolean twoPaneLayout;
-    private EditText rpsEditText;
+    EditText rpsEditText;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
 
          View view = inflater.inflate(R.layout.first_fragment, container, false);
 
@@ -29,49 +28,26 @@ public class FirstFragment extends Fragment implements OnClickListener {
         Button b = (Button) view.findViewById(R.id.playButton);
         b.setOnClickListener(this);
 
+        rpsEditText = (EditText)view.findViewById(R.id.rpsEditText);
+
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // Get a references from the host activity
-        FirstActivity activity = (FirstActivity)getActivity();
-        rpsEditText = (EditText) activity.findViewById(R.id.rpsEditText);
-
-        // Make a new game object, use saved state if it exists
-        if(savedInstanceState != null) {
-            // Restore saved state
-            Hand humanHand = Hand.values()[savedInstanceState.getInt("humanHand", 0)];
-            rpsEditText.setText(humanHand.toString());
-            Hand computerHand = Hand.values()[savedInstanceState.getInt("computerHand", 0)];
-            game = new RpsGame(computerHand, humanHand);
-        }
-        else {
-            game = new RpsGame();
-        }
-        // Give the host activity a reference to the game object
-        activity.setGame(game);
-
-        // Check to see if FirstActivity has loaded a single or dual pane layout
-        twoPaneLayout = activity.findViewById(R.id.second_fragment) != null;
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.playButton) {
-            String humanHand = rpsEditText.getText().toString().toLowerCase();
-            if (humanHand.equals("")) {
-                humanHand = "none";
+            String hand = rpsEditText.getText().toString().toLowerCase();
+            // convert string to Hand enum
+            if (hand.equals("")) {
+                hand = "none";
             }
-            game.setHumanHand(Hand.valueOf(humanHand));
-            if(!twoPaneLayout) {
-                Intent intent = new Intent(getActivity(), SecondActivity.class);
-                int humanHandNum = game.getHumanHand().ordinal();
-                intent.putExtra("humanHand", humanHandNum);  // send state to 2nd activity
-                startActivity(intent);
-            }
+            Hand humanHand = Hand.valueOf(hand);
+
+            // send an intent containing the human's Hand choice
+            Intent intent = new Intent(getActivity(), SecondActivity.class);
+            int humanHandNum = humanHand.ordinal();
+            intent.putExtra("humanHand", humanHandNum);  // send state to 2nd activity
+            startActivity(intent);
         }
     }
 }

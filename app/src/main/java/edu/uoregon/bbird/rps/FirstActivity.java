@@ -9,15 +9,6 @@ import android.os.Bundle;
 
 public class FirstActivity extends Activity {
 
-    private RpsGame game;   // Created and managed in FirstFragment
-
-    public RpsGame getGame() {
-        return game;
-    }
-
-    public void setGame(RpsGame game) {
-        this.game = game;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
