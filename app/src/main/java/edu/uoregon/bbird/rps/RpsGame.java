@@ -3,10 +3,10 @@ package edu.uoregon.bbird.rps;
 import java.util.Random;
 
 /**
- * Created by Brian Bird on 7/1/2015. Revised 7/10/15
+ * Created by Brian Bird on 7/1/2015. Revised 7/15/15
  */
 
-public class RpcGame {
+public class RpsGame {
 
     // Instance variables
     private Random rand = new Random();
@@ -14,7 +14,7 @@ public class RpcGame {
     private Hand humanHand = Hand.none;
 
     // Getters and Setters
-    public Hand getLastHumanMove() {
+    public Hand getHumanHand() {
         return humanHand;
     }
 
@@ -22,7 +22,7 @@ public class RpcGame {
         this.humanHand = humanHand;
     }
 
-    public Hand getLastComputerMove() {
+    public Hand getComputerHand() {
         return computerHand;
     }
 
@@ -31,12 +31,12 @@ public class RpcGame {
     }
 
     // Constructors
-    public RpcGame() {
+    public RpsGame() {
         computerHand = Hand.none;
         humanHand = Hand.none;
     }
 
-    public RpcGame(Hand computerHand, Hand humanHand) {
+    public RpsGame(Hand computerHand, Hand humanHand) {
         this.computerHand = computerHand;
         this.humanHand = humanHand;
     }

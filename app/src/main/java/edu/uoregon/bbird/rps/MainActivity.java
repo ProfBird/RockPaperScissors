@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    RpcGame game = new RpcGame();
+    RpsGame game = new RpsGame();
     ImageView rpsImageView;
     EditText rpsEditText;
     TextView winnerTextView;
@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
         rpsEditText.setText(humanHand.toString());
        Hand computerHand = Hand.values()[savedValues.getInt("computerHand", 0)];
         displayImage((computerHand));
-        game = new RpcGame(computerHand, humanHand);
+        game = new RpsGame(computerHand, humanHand);
         winnerTextView.setText(game.whoWon().toString());
 
         // Read and use settings
@@ -61,8 +61,8 @@ public class MainActivity extends ActionBarActivity {
 
         //save state
         SharedPreferences.Editor editor = savedValues.edit();
-        editor.putInt("humanHand", game.getLastHumanMove().ordinal());
-        editor.putInt("computerHand", game.getLastComputerMove().ordinal());
+        editor.putInt("humanHand", game.getHumanHand().ordinal());
+        editor.putInt("computerHand", game.getComputerHand().ordinal());
         editor.commit();
     }
 
