@@ -19,6 +19,11 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     ImageView rpsImageView;
     TextView compMoveTextView;
+    RpsGame game;
+
+    public void setGame(RpsGame game) {
+        this.game = game;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +37,6 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -42,25 +46,17 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    public void computerMove(RpsGame game) {
-        Activity activity = getActivity();   // Get a reference to the host activity
-
-        // Display the computer's move
-        rpsImageView = (ImageView)activity.findViewById(R.id.rpsImage);
-        compMoveTextView = (TextView)activity.findViewById(R.id.compMoveTextView);
-        displayImage(game.computerMove());   // Computer makes a move and we display it
-
-        // Display the winner
-        TextView winnerTextView = (TextView)activity.findViewById(R.id.winnerTextView);
-        winnerTextView.setText(game.whoWon().toString());
+    public void makeComputerMove() {
+        game.computerMove();
     }
 
-
-    private void displayImage(Hand hand) {
+    public void displayComputerMoveAndWinner() {
         int id = 0;
 
-        switch(hand)
+        switch(game.getComputerHand())
         {
+            case none:
+                break;
             case rock:
                 id = R.drawable.rock;
                 break;
@@ -71,8 +67,18 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
                 id = R.drawable.scissors;
                 break;
         }
+
+        Activity activity = getActivity();   // Get a reference to the host activity
+
+        // Display the computer's move
+        rpsImageView = (ImageView)activity.findViewById(R.id.rpsImage);
+        compMoveTextView = (TextView)activity.findViewById(R.id.compMoveTextView);
         rpsImageView.setImageResource(id);
-        compMoveTextView.setText(hand.toString());
+        compMoveTextView.setText(game.getComputerHand().toString());
+
+        // Display the winner
+        TextView winnerTextView = (TextView)activity.findViewById(R.id.winnerTextView);
+        winnerTextView.setText(game.whoWon().toString());
 
     }
 }

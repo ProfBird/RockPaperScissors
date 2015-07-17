@@ -13,6 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/*  We're not using this file in the app
+    It's just in the project so we can copy
+    and paste code from it.
+ */
+
 public class MainActivity extends ActionBarActivity {
 
     RpsGame game = new RpsGame();

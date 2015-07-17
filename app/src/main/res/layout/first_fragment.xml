@@ -11,8 +11,10 @@
         android:layout_height="wrap_content"
         android:text="Play"
         android:id="@+id/playButton"
+        android:layout_marginTop="36dp"
         android:layout_below="@+id/rpsEditText"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/compMoveTextView"
+        android:layout_alignEnd="@+id/compMoveTextView" />
 
     <EditText
         android:layout_width="wrap_content"

@@ -3,7 +3,7 @@ package edu.uoregon.bbird.rps;
 import java.util.Random;
 
 /**
- * Created by Brian Bird on 7/1/2015. Revised 7/15/15
+ * Created by Brian Bird on 7/1/2015. Revised 7/16/15
  */
 
 public class RpsGame {
@@ -30,6 +30,7 @@ public class RpsGame {
         this.computerHand = computerHand;
     }
 
+
     // Constructors
     public RpsGame() {
         computerHand = Hand.none;
@@ -41,7 +42,7 @@ public class RpsGame {
         this.humanHand = humanHand;
     }
 
-    // Computer and human moves need to be made before calling this method
+    // Computer and human hands need to be set before calling this method
     public Winner whoWon()
     {
         Winner win;
