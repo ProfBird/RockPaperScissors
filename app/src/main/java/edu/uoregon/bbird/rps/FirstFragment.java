@@ -2,7 +2,9 @@ package edu.uoregon.bbird.rps;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,7 @@ public class FirstFragment extends Fragment implements OnClickListener {
         rpsEditText = (EditText) activity.findViewById(R.id.rpsEditText);
 
         // Make a new game object, use saved state if it exists
+        /*
         if(savedInstanceState != null) {
             // Restore saved state
             Hand humanHand = Hand.values()[savedInstanceState.getInt("humanHand", 0)];
@@ -50,8 +53,9 @@ public class FirstFragment extends Fragment implements OnClickListener {
         }
         else {
             game = new RpsGame();
-        }
+        }*/
         // Give the host activity a reference to the game object
+        game = new RpsGame();
         activity.setGame(game);
 
         // Check to see if FirstActivity has loaded a single or dual pane layout
@@ -61,11 +65,20 @@ public class FirstFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.playButton) {
+
+            // Get user's move
             String humanHand = rpsEditText.getText().toString().toLowerCase();
             if (humanHand.equals("")) {
                 humanHand = "none";
             }
             game.setHumanHand(Hand.valueOf(humanHand));
+
+            // Conditionally clear user's move from the EditText
+            SharedPreferences savedValues = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            if(savedValues.getBoolean("enable_reset_checkbox", true))
+                rpsEditText.setText("");
+
+            // Initiate computer's move
             if(!twoPaneLayout) {
                 Intent intent = new Intent(getActivity(), SecondActivity.class);
                 int humanHandNum = game.getHumanHand().ordinal();

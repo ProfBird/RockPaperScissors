@@ -2,7 +2,7 @@
 
     <CheckBoxPreference
         android:key="enable_reset_checkbox"
-        android:title="Enable Reset Button"
-        android:summary="Enable a Reset button that can be used to clear both player's moves"
+        android:title="Clear user choice"
+        android:summary="Clear the user's choice after clicking the Play button"
         android:defaultValue="true" />
 </PreferenceScreen>
