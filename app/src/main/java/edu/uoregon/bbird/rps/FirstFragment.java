@@ -51,16 +51,21 @@ public class FirstFragment extends Fragment implements OnClickListener {
             rpsEditText.setText(humanHand.toString());
             Hand computerHand = Hand.values()[savedInstanceState.getInt("computerHand", 0)];
             game = new RpsGame(computerHand, humanHand);
+            activity.setGame(game);
         }
         else {
             game = new RpsGame();
         }
         // Give the host activity a reference to the game object
-        game = new RpsGame();
         activity.setGame(game);
 
         // Check to see if FirstActivity has loaded a single or dual pane layout
         twoPaneLayout = activity.findViewById(R.id.second_fragment) != null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

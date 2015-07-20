@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class FirstActivity extends ActionBarActivity {
 
     private RpsGame game;   // Created and managed in FirstFragment
+    SecondFragment fragment2;
 
     public RpsGame getGame() {
         return game;
@@ -23,6 +24,7 @@ public class FirstActivity extends ActionBarActivity {
 
     public void setGame(RpsGame game) {
         this.game = game;
+        fragment2.setGame(game);
     }
 
     @Override
@@ -30,6 +32,9 @@ public class FirstActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.first_activity);
+
+        fragment2 = (SecondFragment)getFragmentManager().findFragmentById(R.id.second_fragment);
+
     }
 
     @Override
@@ -58,10 +63,9 @@ public class FirstActivity extends ActionBarActivity {
 
     }
 
-    // Called by the FirstFragent to invoke game-play in the SecondFragment
+    // Called by the FirstFragment to invoke game-play in the SecondFragment
     public void makeComputerMove() {
         SecondFragment fragment2 = (SecondFragment)getFragmentManager().findFragmentById(R.id.second_fragment);
-        fragment2.setGame(game);
         fragment2.makeComputerMove();
         fragment2.displayComputerMoveAndWinner();
     }

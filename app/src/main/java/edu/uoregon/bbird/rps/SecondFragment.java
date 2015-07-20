@@ -23,6 +23,7 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     public void setGame(RpsGame game) {
         this.game = game;
+        displayComputerMoveAndWinner();  // redisplay it in case it is resuming
     }
 
     @Override
