@@ -24,7 +24,8 @@ public class FirstActivity extends ActionBarActivity {
 
     public void setGame(RpsGame game) {
         this.game = game;
-        fragment2.setGame(game);
+        if(fragment2 != null)
+            fragment2.setGame(game);
     }
 
     @Override
@@ -65,9 +66,11 @@ public class FirstActivity extends ActionBarActivity {
 
     // Called by the FirstFragment to invoke game-play in the SecondFragment
     public void makeComputerMove() {
-        SecondFragment fragment2 = (SecondFragment)getFragmentManager().findFragmentById(R.id.second_fragment);
-        fragment2.makeComputerMove();
-        fragment2.displayComputerMoveAndWinner();
+        if (fragment2 != null) {
+            fragment2 = (SecondFragment) getFragmentManager().findFragmentById(R.id.second_fragment);
+            fragment2.makeComputerMove();
+            fragment2.displayComputerMoveAndWinner();
+        }
     }
 
 }

@@ -39,12 +39,11 @@ public class FirstFragment extends Fragment implements OnClickListener {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Get a references from the host activity
+        // Get a references to the host activity
         FirstActivity activity = (FirstActivity)getActivity();
         rpsEditText = (EditText) activity.findViewById(R.id.rpsEditText);
 
         // Make a new game object, use saved state if it exists
-
         if(savedInstanceState != null) {
             // Restore saved state
             Hand humanHand = Hand.values()[savedInstanceState.getInt("humanHand", 0)];
@@ -61,11 +60,6 @@ public class FirstFragment extends Fragment implements OnClickListener {
 
         // Check to see if FirstActivity has loaded a single or dual pane layout
         twoPaneLayout = activity.findViewById(R.id.second_fragment) != null;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override
