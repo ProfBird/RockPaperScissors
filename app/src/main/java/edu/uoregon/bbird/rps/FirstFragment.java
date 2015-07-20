@@ -21,6 +21,7 @@ public class FirstFragment extends Fragment implements OnClickListener {
     private RpsGame game;
     private boolean twoPaneLayout;
     private EditText rpsEditText;
+    private Button playButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class FirstFragment extends Fragment implements OnClickListener {
          View view = inflater.inflate(R.layout.first_fragment, container, false);
 
         // Set this fragment to listen for the Play button's click event
-        Button b = (Button) view.findViewById(R.id.playButton);
-        b.setOnClickListener(this);
+        Button playButton = (Button) view.findViewById(R.id.playButton);
+        playButton.setOnClickListener(this);
 
         return view;
     }
@@ -43,7 +44,7 @@ public class FirstFragment extends Fragment implements OnClickListener {
         rpsEditText = (EditText) activity.findViewById(R.id.rpsEditText);
 
         // Make a new game object, use saved state if it exists
-        /*
+
         if(savedInstanceState != null) {
             // Restore saved state
             Hand humanHand = Hand.values()[savedInstanceState.getInt("humanHand", 0)];
@@ -53,7 +54,7 @@ public class FirstFragment extends Fragment implements OnClickListener {
         }
         else {
             game = new RpsGame();
-        }*/
+        }
         // Give the host activity a reference to the game object
         game = new RpsGame();
         activity.setGame(game);
@@ -84,7 +85,19 @@ public class FirstFragment extends Fragment implements OnClickListener {
                 int humanHandNum = game.getHumanHand().ordinal();
                 intent.putExtra("humanHand", humanHandNum);  // send state to 2nd activity
                 startActivity(intent);
+            } else {
+                ((FirstActivity)getActivity()).makeComputerMove();
+
             }
+
         }
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+            outState.putInt("humanHand", game.getHumanHand().ordinal());
+            outState.putInt("computerHand", game.getComputerHand().ordinal());
+    }
+
 }

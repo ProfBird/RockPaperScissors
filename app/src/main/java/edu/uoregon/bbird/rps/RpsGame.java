@@ -61,9 +61,13 @@ public class RpsGame {
     }
 
     // This generates a random move for the computer
-    public Hand computerMove()
-    {
+    public Hand computerMove() {
         computerHand = Hand.values()[rand.nextInt(3) + 1];
         return computerHand;
+    }
+
+    public void reset() {
+        computerHand = Hand.none;
+        humanHand = Hand.none;
     }
 }

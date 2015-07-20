@@ -12,7 +12,6 @@
         android:id="@+id/rpsImage"
         android:src="@drawable/rock"
         android:scaleType="fitCenter"
-        android:layout_below="@+id/rpsEditText"
         android:layout_centerHorizontal="true" />
 
     <TextView

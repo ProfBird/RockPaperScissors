@@ -39,10 +39,13 @@ public class SecondFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.newGameButton:
+        if(v.getId() == R.id.newGameButton) {
+            if (getActivity().findViewById(R.id.first_fragment) == null) {  // using two Activities
                 startActivity(new Intent(getActivity(), FirstActivity.class));
-                break;
+            } else {
+                game.reset();
+                displayComputerMoveAndWinner();
+            }
         }
     }
 

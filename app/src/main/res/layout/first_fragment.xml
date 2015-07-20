@@ -12,15 +12,12 @@
         android:text="Play"
         android:id="@+id/playButton"
         android:layout_marginTop="36dp"
-        android:layout_below="@+id/rpsEditText"
-        android:layout_alignRight="@+id/compMoveTextView"
-        android:layout_alignEnd="@+id/compMoveTextView" />
+        android:layout_below="@+id/rpsEditText" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rpsEditText"
-        android:backgroundTint="#ffbdf8ff"
         android:layout_below="@+id/textView"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
@@ -33,16 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Enter rock, paper, or scissors"
         android:id="@+id/textView"
-        android:layout_below="@+id/compMoveTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/compMoveTextView"
-        android:layout_below="@+id/rpsImage"
-        android:layout_centerHorizontal="true" />
-
+    
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package edu.uoregon.bbird.rps;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -55,6 +56,14 @@ public class FirstActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    // Called by the FirstFragent to invoke game-play in the SecondFragment
+    public void makeComputerMove() {
+        SecondFragment fragment2 = (SecondFragment)getFragmentManager().findFragmentById(R.id.second_fragment);
+        fragment2.setGame(game);
+        fragment2.makeComputerMove();
+        fragment2.displayComputerMoveAndWinner();
     }
 
 }
